@@ -6,10 +6,14 @@
 #%%
 import sys
 import bitIO as bit
-file = open("C:/Users/oeste/OneDrive/Uni/data_2_semester/Algoritmer/Project_3/DelIIITestFilerTilUdlevering/oneByte.txt", 'rb')
+file = open("C:/Users/oeste/OneDrive/Uni/data_2_semester/Algoritmer/Project_3/DelIIITestFilerTilUdlevering/KingJamesBible.txt", 'rb')
 b = file.read()
 print(len(b))
-bit_class = bit.BitReader(file)
-bit_class.read(b)
+bit_class = bit.BitWriter(file)
+freqTabel = [0]*255
+for i in b:
+    freqTabel[i] +=1
+print(freqTabel)
+
 file.close()
 # %%
