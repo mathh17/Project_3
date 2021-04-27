@@ -17,3 +17,17 @@ print(freqTabel)
 
 file.close()
 # %%
+
+import PQHeap as pq
+
+def huffmann(C):
+    n = len(C)
+    Q = C
+    for i in range(1, n-1):
+        x = pq.extractMin(Q)
+        y = pq.extractMin(Q)
+        z = x + y
+        pq.insert(Q,z)
+        return pq.extractMin(Q)
+    
+

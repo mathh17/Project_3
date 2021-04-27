@@ -8,6 +8,8 @@ Created on Tue Mar  2 14:58:53 2021
 """
 # Joachim 
 # Fjerner elementet i A med laveste prioritet og returnerer det
+import element as el
+
 def extractMin(A):
     if len(A) < 1: 
         print("Error heap underflow")
@@ -84,4 +86,5 @@ def heap_increase_key(A,i,key):
             i = parent(i)
     return A
     
-    
+
+e1 = el(5,10)
