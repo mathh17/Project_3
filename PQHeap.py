@@ -8,7 +8,7 @@ Created on Tue Mar  2 14:58:53 2021
 """
 # Joachim 
 # Fjerner elementet i A med laveste prioritet og returnerer det
-import element as el
+import Element as Element
 
 def extractMin(A):
     if len(A) < 1: 
@@ -25,7 +25,7 @@ def extractMin(A):
 def insert(A, e):
     i = len(A)
     A.append(e)
-    while(i > 0 and A[parent(i)] > A[i]):
+    while(i > 0 and A[parent(i)].key > A[i].key):
         A[i], A[parent(i)] = A[parent(i)], A[i]
         i = parent(i)
     
@@ -56,10 +56,10 @@ def right(i):
 def min_heapify(A,i):
     l = left(i)
     r = right(i)
-    if(l <= (len(A)-1) and A[l] < A[i]):
+    if(l <= (len(A)-1) and A[l].key < A[i].key):
         least = l
     else: least = i
-    if r <= (len(A)-1) and A[r] < A[least]:
+    if r <= (len(A)-1) and A[r].key < A[least].key:
         least = r
     if least != i:
         A[i],A[least] = A[least],A[i]
@@ -87,4 +87,4 @@ def heap_increase_key(A,i,key):
     return A
     
 
-e1 = el(5,10)
+

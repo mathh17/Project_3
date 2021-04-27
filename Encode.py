@@ -31,3 +31,9 @@ def huffmann(C):
         return pq.extractMin(Q)
     
 
+# %%
+
+import Element as el
+
+
+el1 = el(1000)
