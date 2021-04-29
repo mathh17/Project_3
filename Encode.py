@@ -9,7 +9,6 @@ import bitIO as bit
 import PQHeap 
 from Element import Element
 
-#file = open("C:/Users/oeste/OneDrive/Uni/data_2_semester/Algoritmer/Project_3/
 file = open("DelIIITestFilerTilUdlevering/readMe.txt", 'rb')
 
 b = file.read()
@@ -19,52 +18,24 @@ freqTabel = [0]*255
 for i in b:
     freqTabel[i] +=1
 
-pq = []
+pq = PQHeap.createEmptyPQ()
 for i in range(len(freqTabel)):
     e = Element(freqTabel[i], [i])
     PQHeap.insert(pq, e)
     
-while len(pq) > 0:
-    # Udtag det Element fra prioritetskøen, som har mindste key.
-    e = PQHeap.extractMin(pq)
-    # Tilgå og print dets felter key og data.
-    extractedKey = e.key
-    extractedData = e.data
-    print(extractedKey)
-    print(extractedData)
-
-
-
 
 def huffmann(C):
     n = len(C)
     Q = C
     for i in range(0, n-1):
-        x = PQHeap.extractMin(Q).key
-        y = PQHeap.extractMin(Q).key
-        z = Element(x+y,[[x],[y]])
+        x = PQHeap.extractMin(Q)
+        y = PQHeap.extractMin(Q)
+        z = Element(x.key + y.key,[[x],[y]])
         PQHeap.insert(Q,z)
     return PQHeap.extractMin(Q)
 
-
-
-huffmann(pq)
-
+ht = huffmann(pq)
+print(ht.key)
 
 file.close()
 # %%
-
-from Element import Element
-import PQHeap
-
-
-el1 = Element(1000, [97])
-
-pq = []
-PQHeap.insert(pq,el1)
-
-e = PQHeap.extractMin(pq)
-extractedKey = e.key
-extractedData = e.data
-print(extractedKey)
-print(extractedData)
