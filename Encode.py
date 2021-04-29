@@ -14,14 +14,16 @@ file = open("DelIIITestFilerTilUdlevering/readMe.txt", 'rb')
 b = file.read()
 #print(len(b))
 bit_class = bit.BitWriter(file)
-freqTabel = [0]*255
+freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
 
 pq = PQHeap.createEmptyPQ()
 for i in range(len(freqTabel)):
-    e = Element(freqTabel[i], [i])
-    PQHeap.insert(pq, e)
+    if freqTabel[i] != 0:
+        e = Element(freqTabel[i], [i])
+        PQHeap.insert(pq, e)
+
     
 
 def huffmann(C):
@@ -36,6 +38,10 @@ def huffmann(C):
 
 ht = huffmann(pq)
 print(ht.key)
+
+
+huffmann(pq)
+
 
 file.close()
 # %%
