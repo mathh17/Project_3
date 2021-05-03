@@ -17,6 +17,9 @@ bit_class = bit.BitWriter(file)
 freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
+    
+    
+
 
 pq = PQHeap.createEmptyPQ()
 for i in range(len(freqTabel)):
