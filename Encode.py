@@ -64,9 +64,9 @@ ht.data[1]
 """
 def inorder(T):
     if T: 
-        inorder(T.data[0])
+        inorder(PQHeap.extractMin(T))
         print(T.key)
-        inorder(T.data[1])
+        inorder(PQHeap.extractMin(T))
 
 inorder(ht)
 
