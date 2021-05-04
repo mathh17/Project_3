@@ -30,7 +30,7 @@ for i in range(len(freqTabel)):
 pq = PQHeap.createEmptyPQ()
 for i in range(len(freqTabel)):
     if freqTabel[i] != 0:
-        e = Element(freqTabel[i], [i])
+        e = Element(freqTabel[i], i)
         PQHeap.insert(pq, e)
 
     
@@ -41,16 +41,16 @@ def huffmann(C):
     for i in range(0, n-1):
         x = PQHeap.extractMin(Q)
         y = PQHeap.extractMin(Q)
-        z = Element(x.key + y.key,[[x.data],[y.data]])
-        print(z)
+        z = Element(x.key + y.key,[x.data,y.data])
+
         PQHeap.insert(Q,z)
     return PQHeap.extractMin(Q)
 
     
 ht = huffmann(pq)
-print(freqTabel)
-print(ht.data[1][0][0][0][0][0][0][0][0])
 
+print(ht.data[0][0][0][1][1])
+ 
 
 
 
