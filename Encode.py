@@ -13,14 +13,14 @@ file = open("DelIIITestFilerTilUdlevering/KingJamesBible.txt", 'rb')
 output = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'wb')
 bitstreamin = bitIO.BitReader(file)
 bitstreamout = bitIO.BitWriter(output)
-b = file.read(1)
+b = file.read()
 #print(len(b))
-bit_written = bitstreamout.BitWriter(file)
+#bit_written = bitstreamout.BitWriter(file)
 freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
 
-for i in freqTabel:
+for i in range(len(freqTabel)):
     if freqTabel[i] != 0:
         bitstreamout.writeint32bits(freqTabel[i])
 
@@ -43,11 +43,21 @@ def huffmann(C):
     return PQHeap.extractMin(Q)
 
 ht = huffmann(pq)
+print(ht.data[0])
 print(ht.key)
 
 
-huffmann(pq)
+#huffmann(pq)
 
+passwordTabel = [0]*256
+
+def inorder(T):
+    if T: 
+        inorder(T.data[0])
+        print(T.key)
+        inorder(T.data[1])
+
+inorder(ht)
 
 file.close()
 # %%
