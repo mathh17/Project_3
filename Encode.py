@@ -41,19 +41,27 @@ def huffmann(C):
     for i in range(0, n-1):
         x = PQHeap.extractMin(Q)
         y = PQHeap.extractMin(Q)
-        z = Element(x.key + y.key,[[x],[y]])
+        z = Element(x.key + y.key,[[x.data],[y.data]])
+        print(z)
         PQHeap.insert(Q,z)
     return PQHeap.extractMin(Q)
 
+    
 ht = huffmann(pq)
-print(ht.data[0])
-print(ht.key)
+print(freqTabel)
+print(ht.data[1][0][0][0][0][0][0][0][0])
+
+
+
 
 
 #huffmann(pq)
 
 passwordTabel = [0]*256
 
+ht.data[1]
+
+"""
 def inorder(T):
     if T: 
         inorder(T.data[0])
@@ -64,3 +72,4 @@ inorder(ht)
 
 file.close()
 # %%
+"""
