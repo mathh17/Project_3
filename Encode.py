@@ -5,18 +5,23 @@
 """
 #%%
 import sys
-import bitIO as bit
+import bitIO
 import PQHeap 
 from Element import Element
 
-file = open("DelIIITestFilerTilUdlevering/readMe.txt", 'rb')
-
-b = file.read()
+file = open("DelIIITestFilerTilUdlevering/KingJamesBible.txt", 'rb')
+output = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'wb')
+bitstreamin = bitIO.BitReader(file)
+bitstreamout = bitIO.BitWriter(output)
+b = file.read(1)
 #print(len(b))
-bit_class = bit.BitWriter(file)
 freqTabel = [0]*255
 for i in b:
     freqTabel[i] +=1
+
+for i in freqTabel:
+    if freqTabel[i] != 0:
+        bitstreamout.writeint32bits(freqTabel[i])
 
 pq = PQHeap.createEmptyPQ()
 for i in range(len(freqTabel)):
