@@ -15,7 +15,8 @@ bitstreamin = bitIO.BitReader(file)
 bitstreamout = bitIO.BitWriter(output)
 b = file.read(1)
 #print(len(b))
-freqTabel = [0]*255
+bit_class = bit.BitWriter(file)
+freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
 
@@ -25,8 +26,10 @@ for i in freqTabel:
 
 pq = PQHeap.createEmptyPQ()
 for i in range(len(freqTabel)):
-    e = Element(freqTabel[i], [i])
-    PQHeap.insert(pq, e)
+    if freqTabel[i] != 0:
+        e = Element(freqTabel[i], [i])
+        PQHeap.insert(pq, e)
+
     
 
 def huffmann(C):
@@ -41,6 +44,10 @@ def huffmann(C):
 
 ht = huffmann(pq)
 print(ht.key)
+
+
+huffmann(pq)
+
 
 file.close()
 # %%
