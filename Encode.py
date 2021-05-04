@@ -61,15 +61,14 @@ passwordTabel = [0]*256
 
 ht.data[1]
 
-"""
+
 def inorder(T):
     if T: 
         inorder(PQHeap.extractMin(T))
         print(T.key)
         inorder(PQHeap.extractMin(T))
 
-inorder(ht)
+inorder(ht.data)
 
 file.close()
 # %%
-"""
