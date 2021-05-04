@@ -9,7 +9,7 @@ import bitIO
 import PQHeap 
 from Element import Element
 
-file = open("DelIIITestFilerTilUdlevering/KingJamesBible.txt", 'rb')
+file = open("DelIIITestFilerTilUdlevering/ScardoviaWiggsiae.dna", 'rb')
 output = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'wb')
 bitstreamin = bitIO.BitReader(file)
 bitstreamout = bitIO.BitWriter(output)
@@ -49,27 +49,21 @@ def huffmann(C):
     
 ht = huffmann(pq)
 
-print(ht.data[0][0][0][1][1])
- 
-
-
-
-
-#huffmann(pq)
 
 passwordTabel = [0]*256
 
-ht.data[1]
 
-"""
-def inorder(T):
-    if T: 
-        inorder(T.data[0])
-        print(T.key)
-        inorder(T.data[1])
 
-inorder(ht)
+def inorder(T,password):
+    if type(T) == int:
+        passwordTabel[T] = password
+    else:
+        inorder(T[0], password + str(0))
+        inorder(T[1], password + str(1))
+
+inorder(ht.data, "")
+print(passwordTabel)
+
 
 file.close()
 # %%
-"""
