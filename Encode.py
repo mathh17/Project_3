@@ -15,7 +15,7 @@ bitstreamin = bitIO.BitReader(file)
 bitstreamout = bitIO.BitWriter(output)
 b = file.read(1)
 #print(len(b))
-bit_class = bit.BitWriter(file)
+bit_written = bitstreamout.BitWriter(file)
 freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
