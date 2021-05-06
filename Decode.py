@@ -3,7 +3,7 @@
          Joachim Skovbogaard - Josko20
          Andreas Klauber - ankla20
 """
-
+#%%
 import sys
 import Encode
 import bitIO
@@ -20,7 +20,7 @@ sum_hyp = 0
 for i in range(256):
     x = bitstreamin.readint32bits()
     freqTable[i] = x
-    sumhyp += x
+    sum_hyp += x
 
 # print("Decoded__")
 # print(freqTable)
@@ -37,7 +37,7 @@ def bit_traversal(T):
         sum_hyp -= 1
         return T
     b = bitstreamin.readbit()
-    return bit_traversal(T[b])
+    bit_traversal(T[b])
 
 
 def decode(hf):
@@ -53,3 +53,4 @@ decode(hf.data)
 file.close()
 decoded.close()
 print("hello")
+# %%
