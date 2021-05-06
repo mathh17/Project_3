@@ -19,9 +19,6 @@ b = file.read()
 freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
-    
-    
-
 
 for i in range(len(freqTabel)):
     if freqTabel[i] != 0:
@@ -33,8 +30,6 @@ for i in range(len(freqTabel)):
         e = Element(freqTabel[i], i)
         PQHeap.insert(pq, e)
 
-    
-
 def huffmann(C):
     n = len(C)
     Q = C
@@ -45,14 +40,10 @@ def huffmann(C):
 
         PQHeap.insert(Q,z)
     return PQHeap.extractMin(Q)
-
     
 ht = huffmann(pq)
 
-
 passwordTabel = [0]*256
-
-
 
 def inorder(T,password):
     if type(T) == int:
@@ -63,7 +54,10 @@ def inorder(T,password):
 
 inorder(ht.data, "")
 print(passwordTabel)
-
+for i in b:
+    string = list(passwordTabel[i])
+    for j in range(len(string)):
+        bitstreamout.writebit(string[j])
 
 file.close()
 # %%
