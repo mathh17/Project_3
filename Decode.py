@@ -32,21 +32,22 @@ print(sum_hyp)
 
 
 def bit_traversal(T, sum_hyp):
-    b = bitstreamin.readbit()
-    sum_hyp -= 1
     if type(T) == int:
-        return [T, sum_hyp]
-    else:
-        return bit_traversal(T[b], sum_hyp)
+        print(T)
+        print(sum_hyp)
+        return T, sum_hyp
+    
+    b = bitstreamin.readbit()
+    print(b)
+    sum_hyp -= 1
+    bit_traversal(T[b], sum_hyp)
 
 
 def decode(hf, sum_hyp):
     while sum_hyp > 0:
         code, sum_hyp = bit_traversal(hf, sum_hyp)
         decoded.write(bytes(code))
-        
-        
 
 decode(hf.data, sum_hyp)
-
-
+file.close()
+decoded.close()
