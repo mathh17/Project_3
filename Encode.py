@@ -20,19 +20,23 @@ freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
 
+print("Encoded freTable _______________________________________")
+print(freqTabel)
 for i in range(len(freqTabel)):
-    if freqTabel[i] != 0:
-        bitstreamout.writeint32bits(freqTabel[i])
+    bitstreamout.writeint32bits(freqTabel[i])
 
-pq = PQHeap.createEmptyPQ()
-for i in range(len(freqTabel)):
-    if freqTabel[i] != 0:
-        e = Element(freqTabel[i], i)
-        PQHeap.insert(pq, e)
+def PQHeaper(C):
+    pq = PQHeap.createEmptyPQ()
+    for i in range(len(C)):
+        if C[i] != 0:
+            e = Element(C[i], i)
+            PQHeap.insert(pq, e)
+    return pq
 
 def huffmann(C):
-    n = len(C)
-    Q = C
+    pq = PQHeaper(C)
+    n = len(pq)
+    Q = pq
     for i in range(0, n-1):
         x = PQHeap.extractMin(Q)
         y = PQHeap.extractMin(Q)
@@ -40,8 +44,9 @@ def huffmann(C):
 
         PQHeap.insert(Q,z)
     return PQHeap.extractMin(Q)
-    
-ht = huffmann(pq)
+
+
+ht = huffmann(freqTabel)
 
 passwordTabel = [0]*256
 
@@ -54,7 +59,7 @@ def inorder(T,password):
 
 inorder(ht.data, "")
 bytecounter = 0
-print(passwordTabel)
+#print(passwordTabel)
 for i in b:
     string = list(passwordTabel[i])
     for j in range(len(string)):
