@@ -61,6 +61,10 @@ while True:
     b = file.read(1)
     if not b:
         break
+    string = list(passwordTabel[i])
+    for j in range(len(string)):
+        string[j] = int(string[j])
+        bitstreamout.writebit(string[j])
     bitstreamout.writebit(b[0])
 file.close()
 output.close()
