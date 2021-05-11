@@ -8,9 +8,9 @@ import sys
 import bitIO
 import PQHeap 
 from Element import Element
-
-file = open("DelIIITestFilerTilUdlevering/KingJamesBible.txt", 'rb')
-output = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'wb')
+input = sys.argv[1]
+file = open(input, 'rb')
+output = open(sys.argv[2], 'wb')
 bitstreamin = bitIO.BitReader(file)
 bitstreamout = bitIO.BitWriter(output)
 freqTabel = [0]*256
@@ -54,14 +54,17 @@ def inorder(T,password):
         inorder(T[1], password + str(1))
 
 inorder(ht.data, "")
-bytecounter = 0
 
-file = open("DelIIITestFilerTilUdlevering/KingJamesBible.txt", 'rb')
+file = open(input, 'rb')
 while True:
     b = file.read(1)
     if not b:
         break
-    bitstreamout.writebit(b[0])
+    string = list(passwordTabel[b[0]])
+    for j in range(len(string)): 
+        string[j] = int(string[j]) 
+        bitstreamout.writebit(string[j])
+
 file.close()
 output.close()
 # %%
