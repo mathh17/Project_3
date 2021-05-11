@@ -11,7 +11,7 @@ import bitIO
 #%%
 file = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'rb')
 decoded = open("DelIIITestFilerTilUdlevering/Kdecoded.txt", 'wb')
-
+bitstreamout = bitIO.BitWriter(decoded)
 
 bitstreamin = bitIO.BitReader(file)
 
@@ -37,7 +37,7 @@ def bit_traversal(T):
         sum_hyp -= 1
         return T
     b = bitstreamin.readbit()
-    bit_traversal(T[b])
+    return bit_traversal(T[b])
 
 
 def decode(hf):
@@ -46,7 +46,7 @@ def decode(hf):
         code = bit_traversal(hf)
         if code == 10 and last_char == 10:
             print(code)
-        decoded.write(bytes(code))
+        bitstreamout.writebit(code)
         last_char = code
 
 decode(hf.data)
