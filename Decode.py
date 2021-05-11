@@ -45,7 +45,6 @@ def decode(hf):
     while sum_hyp > 0:
         code = bit_traversal(hf)
         decoded.write(bytes([code]))
-
         if sum_hyp < 5000:
             print(code)
 
@@ -53,5 +52,4 @@ def decode(hf):
 decode(hf.data)
 file.close()
 decoded.close()
-print("hello")
 # %%
