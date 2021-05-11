@@ -10,11 +10,10 @@ import bitIO
 
 
 #%%
-file = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'rb')
-decoded = open("DelIIITestFilerTilUdlevering/newestdecoded2.txt", 'wb')
+file = open(sys.argv[1], 'rb')
+decoded = open(sys.argv[2], 'wb')
 
 bitstreamin = bitIO.BitReader(file)
-#bitstreamout = bitIO.BitWriter(decoded)
 
 freqTable = [0]*256
 sum_hyp = 0
@@ -22,15 +21,8 @@ for i in range(256):
     x = bitstreamin.readint32bits()
     freqTable[i] = x
     sum_hyp += x
-
-# print("Decoded__")
-# print(freqTable)
-
-
-
-
+#print(sum_hyp)
 hf = Encode.huffmann(freqTable)
-
 
 def bit_traversal(T):
     if type(T) == int:
@@ -42,13 +34,12 @@ def bit_traversal(T):
 
 
 def decode(hf):
-    while sum_hyp > 0:
+    while sum_hyp > 1:
         code = bit_traversal(hf)
         decoded.write(bytes([code]))
-        if sum_hyp < 5000:
-            print(code)
-
-        
+        #if sum_hyp < 100:
+            #print(sum_hyp)
+  
 decode(hf.data)
 file.close()
 decoded.close()
