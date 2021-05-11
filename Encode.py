@@ -14,14 +14,14 @@ output = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'wb')
 bitstreamin = bitIO.BitReader(file)
 bitstreamout = bitIO.BitWriter(output)
 b = file.read()
-print(len(b))
+#print(len(b))
 #bit_written = bitstreamout.BitWriter(file)
 freqTabel = [0]*256
 for i in b:
     freqTabel[i] +=1
 
 print("Encoded freTable _______________________________________")
-print(freqTabel)
+#print(freqTabel)
 for i in range(len(freqTabel)):
     bitstreamout.writeint32bits(freqTabel[i])
 
@@ -66,4 +66,5 @@ for i in b:
         string[j] = int(string[j])
         bitstreamout.writebit(string[j])
 file.close()
+output.close()
 # %%

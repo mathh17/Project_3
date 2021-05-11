@@ -8,12 +8,13 @@ import sys
 import Encode
 import bitIO
 
+
 #%%
 file = open("DelIIITestFilerTilUdlevering/Koutput.txt", 'rb')
-decoded = open("DelIIITestFilerTilUdlevering/Kdecoded.txt", 'wb')
-bitstreamout = bitIO.BitWriter(decoded)
+decoded = open("DelIIITestFilerTilUdlevering/newestdecoded2.txt", 'wb')
 
 bitstreamin = bitIO.BitReader(file)
+#bitstreamout = bitIO.BitWriter(decoded)
 
 freqTable = [0]*256
 sum_hyp = 0
@@ -41,14 +42,14 @@ def bit_traversal(T):
 
 
 def decode(hf):
-    last_char = 0
     while sum_hyp > 0:
         code = bit_traversal(hf)
-        if code == 10 and last_char == 10:
-            print(code)
-        bitstreamout.writebit(code)
-        last_char = code
+        decoded.write(bytes([code]))
 
+        if sum_hyp < 5000:
+            print(code)
+
+        
 decode(hf.data)
 file.close()
 decoded.close()
