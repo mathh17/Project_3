@@ -6,12 +6,21 @@ Created on Thu May 13 13:59:23 2021
 """
 from Element import Element
 
+"""
+Creates a password object from a frequency table 
+
+"""
 class passwordTable:
     
     def __init__(self, freqTable):
         self.freqTable = freqTable
         self.passwordTable = [0]*256
-        
+"""
+Builds a passwordtable from a huffmantree
+    huffmann_tree: a huffmantree of type Element
+    returns a passwordtable with codes for each item in the huffmantree
+
+"""       
     def build_password_table(self, huffmann_tree):
         if sum(self.freqTable) != 0: 
             passwordTable.inorder(self, huffmann_tree.data,"")
