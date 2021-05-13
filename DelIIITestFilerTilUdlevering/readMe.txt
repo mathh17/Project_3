@@ -7,3 +7,12 @@ same.txt: 100000 bytes -> 13524 bytes
 oneByte.txt: 1 byte -> 1025 bytes
 empty.txt: 0 bytes -> 1024 bytes
 
+
+
+
+
+
+
+
+goodbye do
+

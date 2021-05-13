@@ -10,8 +10,17 @@ import bitIO
 
 
 #%%
-file = open(sys.argv[1], 'rb')
-decoded = open(sys.argv[2], 'wb')
+# file = open(sys.argv[1], 'rb')
+# decoded = open(sys.argv[2], 'wb')
+# encodedName = sys.argv[1]
+# decodedName = sys.argv[2]
+
+encodedName = "DelIIITestFilerTilUdlevering/readMeEncoded.txt"
+decodedName = "DelIIITestFilerTilUdlevering/readMeDecoded.txt"
+
+file = open(encodedName, 'rb')
+decoded = open(decodedName, 'wb')
+
 
 bitstreamin = bitIO.BitReader(file)
 
@@ -27,18 +36,24 @@ hf = Encode.huffmann(freqTable)
 def bit_traversal(T):
     if type(T) == int:
         global sum_hyp
+        if sum_hyp < 10:
+            print(f"________________Sum_hyp:{sum_hyp}___________")
         sum_hyp -= 1
+        
         return T
     b = bitstreamin.readbit()
+    if sum_hyp < 10:
+        print(b)
     return bit_traversal(T[b])
-
+print("__________________________decode table____________________")
+print(freqTable)
 
 def decode(hf):
-    while sum_hyp > 1:
+    while sum_hyp > 0:
         code = bit_traversal(hf)
         decoded.write(bytes([code]))
-        #if sum_hyp < 100:
-            #print(sum_hyp)
+        if sum_hyp < 10:
+            print(chr(code))
   
 decode(hf.data)
 file.close()
