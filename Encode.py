@@ -41,7 +41,6 @@ def huffmann(C):
         x = PQHeap.extractMin(Q)
         y = PQHeap.extractMin(Q)
         z = Element(x.key + y.key,[x.data,y.data])
-
         PQHeap.insert(Q,z)
     return PQHeap.extractMin(Q)
 
