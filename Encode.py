@@ -45,6 +45,8 @@ def makeFreqTable(path):
     file.close()
     return freqTabel
 
+if  sum(freqTabel) != 0:
+    inorder(ht.data, "")
 
 
 # Writes freqTable in 32bits to encoded output file
