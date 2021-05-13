@@ -12,7 +12,7 @@ import Element as Element
 
 def extractMin(A):
     if len(A) < 1: 
-        print("Error heap underflow")
+        #print("Error heap underflow")
         return -1  
     min_e = A[0]
     A[0] = A[len(A)-1]

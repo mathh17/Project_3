@@ -47,13 +47,14 @@ ht = huffmann(freqTabel)
 passwordTabel = [0]*256
 
 def inorder(T,password):
-    if type(T) == int:
+    if type(T) == int or T == None:
         passwordTabel[T] = password
     else:
         inorder(T[0], password + str(0))
         inorder(T[1], password + str(1))
 
-inorder(ht.data, "")
+if  sum(freqTabel) != 0:
+    inorder(ht.data, "")
 
 file = open(input, 'rb')
 while True:

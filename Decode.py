@@ -21,7 +21,6 @@ for i in range(256):
     x = bitstreamin.readint32bits()
     freqTable[i] = x
     sum_hyp += x
-#print(sum_hyp)
 hf = Encode.huffmann(freqTable)
 
 def bit_traversal(T):
@@ -35,12 +34,12 @@ def bit_traversal(T):
 
 def decode(hf):
     while sum_hyp > 1:
-        code = bit_traversal(hf)
+        code = bit_traversal(hf.data)
         decoded.write(bytes([code]))
-        #if sum_hyp < 100:
-            #print(sum_hyp)
-  
-decode(hf.data)
+
+if sum(freqTable) != 0: 
+    decode(hf)
+
 file.close()
 decoded.close()
 # %%
